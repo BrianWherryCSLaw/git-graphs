@@ -20,10 +20,29 @@
 
       // Simulate git commands with Gitgraph API.
       const master = gitgraph.branch("master");
-      master.commit("Initial commit");
+      master.commit("First commit");
 
-      const feature1 = gitgraph.branch("US1234-do-stuff");
-      feature1.commit("Working on it");
+      const feature1 = master.branch("US1234-do-stuff");
+      feature1
+        .commit("Working on it")
+        .commit("Initial commit")
+        .commit("WIP")
+        .commit("Getting there");
+
+      const feature2 = master.branch("US6789-do-something-else");
+      const feature3 = master.branch("US1111-really-quick");
+
+      feature3.commit("Done and dusted");
+      master.merge(feature3).tag("v1.0.0");
+
+      feature4 = master.branch("US3333-another-quickie");
+      feature4.commit("Done in a flash!");
+      master.merge(feature4).tag("v2.0.0");
+
+      feature2
+        .commit("Womble")
+        .commit("Flume")
+        .commit("Badger")
 
     </script>
   </body>
